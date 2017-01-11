@@ -46,6 +46,8 @@ class TabWriter:
         # A list of strings that have not been processed into _buffer
         self._strings = []
 
+        self._padchar = ' '
+
         # These fields are controlled by properties
         self.padding = kwds.pop('padding', 1)
         self.padchar = kwds.pop('padchar', ' ')
