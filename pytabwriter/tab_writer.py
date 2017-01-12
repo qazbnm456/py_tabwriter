@@ -222,41 +222,44 @@ class TabWriter:
 
         self._process_strings()
 
-        # Get the width of each column
-        columns = max(len(row) for row in self._buffer)
-        column_widths = [0] * columns
-        for row in self._buffer:
-            for (i, col) in zip(range(columns), row):
-                w = len(col)
-                if w > column_widths[i]:
-                    column_widths[i] = w
+        if self._buffer:
+            # Get the width of each column
+            columns = max(len(row) for row in self._buffer)
+            column_widths = [0] * columns
+            for row in self._buffer:
+                for (i, col) in zip(range(columns), row):
+                    w = len(col)
+                    if w > column_widths[i]:
+                        column_widths[i] = w
 
-        # Get the padding for each column
-        if isinstance(self.padding, int):
-            padding = [self.padding] * columns
+            # Get the padding for each column
+            if isinstance(self.padding, int):
+                padding = [self.padding] * columns
+            else:
+                padding = self.padding + [1] * (columns - len(self.padding))
+
+            # Get the alignment for each column
+            if isinstance(self.alignment, str):
+                alignment = [self.alignment] * columns
+            else:
+                alignment = self.alignment + ['l'] * (columns - len(self.alignment))
+
+
+            lines = []
+            for row in self._buffer:
+                cols = []
+                for (i, col) in zip(range(columns), row):
+                    pad = self._padchar * (column_widths[i] - len(col) + padding[i])
+                    if alignment[i] == 'l':
+                        entry = col + pad
+                    elif alignment[i] == 'c':
+                        entry = pad[:len(pad) // 2] + col + pad[len(pad) // 2:]
+                    else:
+                        entry = pad + col
+                    cols.append(entry)
+                lines.append(''.join(cols))
         else:
-            padding = self.padding + [1] * (columns - len(self.padding))
-
-        # Get the alignment for each column
-        if isinstance(self.alignment, str):
-            alignment = [self.alignment] * columns
-        else:
-            alignment = self.alignment + ['l'] * (columns - len(self.alignment))
-
-
-        lines = []
-        for row in self._buffer:
-            cols = []
-            for (i, col) in zip(range(columns), row):
-                pad = self._padchar * (column_widths[i] - len(col) + padding[i])
-                if alignment[i] == 'l':
-                    entry = col + pad
-                elif alignment[i] == 'c':
-                    entry = pad[:len(pad) // 2] + col + pad[len(pad) // 2:]
-                else:
-                    entry = pad + col
-                cols.append(entry)
-            lines.append(''.join(cols))
+            lines = []
 
         return '\n'.join(lines)
 
