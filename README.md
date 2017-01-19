@@ -6,7 +6,7 @@ A package for formatting text in aligned columns; inspired by Go's `text/tabwrit
 Example
 -------
 
-    >>> from pytabwriter import TabWriter
+    >>> from py_tabwriter import TabWriter
     >>> tw = TabWriter()
     >>> tw.writeln('first\tsecond\tthird')
     >>> tw.write('x\txx\txxx\n')

@@ -1,15 +1,15 @@
 from distutils.core import setup
 
 desc = '\n'.join(['A module for writing formatted columns of text.',
-                  'See https://github.com/prsteele/pytabwriter for details'])
+                  'See https://github.com/qazbnm456/py_tabwriter for details'])
 
 setup(
-    name='PyTabWriter',
-    version='0.1.1',
-    packages=['pytabwriter'],
+    name='Py_TabWriter',
+    version='0.1.2',
+    packages=['py_tabwriter'],
     license='BSD 3-clause license',
     long_description=desc,
-    author='Patrick Steele',
-    author_email='steele.pat@gmail.com',
-    url='https://github.com/prsteele/pytabwriter'
+    author='Boik Su',
+    author_email='boik@tdohacker.org',
+    url='https://github.com/qazbnm456/py_tabwriter'
 )
