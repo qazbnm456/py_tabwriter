@@ -1,1 +1,1 @@
-from pytabwriter.tab_writer import TabWriter
+from py_tabwriter.tab_writer import TabWriter

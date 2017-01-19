@@ -5,7 +5,7 @@ desc = '\n'.join(['A module for writing formatted columns of text.',
 
 setup(
     name='Py_TabWriter',
-    version='0.1.2',
+    version='0.1.3',
     packages=['py_tabwriter'],
     license='BSD 3-clause license',
     long_description=desc,
